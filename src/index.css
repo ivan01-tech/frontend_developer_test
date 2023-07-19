@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: "Monsterrat";
   src: url("/fonts/Montserrat-Medium.ttf");

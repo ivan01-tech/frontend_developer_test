@@ -1,19 +1,14 @@
-interface Product {
+interface Post {
+  userId: number;
   id: number;
   title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
+  body: stringo;
 }
 
-interface ResponseTypeProducts {
-  products: Product[];
-  total: number;
-  skip: number;
-  limit: number;
+interface Comments {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
+  body: stringm;
 }

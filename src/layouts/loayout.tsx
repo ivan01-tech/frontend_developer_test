@@ -3,7 +3,7 @@ import Header from "../components/Header";
 
 type Props = {};
 
-function loayout({}: Props) {
+function HomeLayout({}: Props) {
   return (
     <>
       <Header />
@@ -12,4 +12,4 @@ function loayout({}: Props) {
   );
 }
 
-export default loayout;
+export default HomeLayout;

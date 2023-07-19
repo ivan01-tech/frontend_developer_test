@@ -7,13 +7,15 @@ import api from "../api/axios";
  * @param {import("axios").AxiosRequestConfig} options
  * @returns
  */
-
+interface ResponseTypeAxios{
+  data:[]
+}
 async function makeRequest(
   url: string,
-  options: AxiosRequestConfig<ResponseTypeProducts>
+  options: AxiosRequestConfig
 ) {
   return api(url, options)
-    .then((res: AxiosResponse<ResponseTypeProducts>) => {
+    .then((res: AxiosResponse<ResponseTypeAxios>) => {
       const d = res.data;
       // TODO delete it
       console.log("d : ", d, url);

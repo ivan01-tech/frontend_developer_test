@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import "./styles/header.css";
+import "../styles/header.css";
 import { AiFillGithub, AiFillTwitterCircle } from "react-icons/ai";
 import { BsLinkedin } from "react-icons/bs";
 type Props = {};
 
 function Header({}: Props) {
   return (
-    <header className="header">
+    <header className="header flex">
       <h1>Blog</h1>
       <nav>
         <ul>
