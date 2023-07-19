@@ -2,13 +2,13 @@ interface Post {
   userId: number;
   id: number;
   title: string;
-  body: stringo;
+  body: string;
 }
 
 interface Res {
   status: number;
 }
-type GlobalRespnse = Post[] | undefined | Res | Comment[];
+type GlobalRespnse = Post[] | undefined | Comment[] | Post;
 interface Comments {
   postId: number;
   id: number;

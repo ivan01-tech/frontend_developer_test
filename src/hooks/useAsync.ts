@@ -43,7 +43,7 @@ export function useAsyncInternal(
   //state to handle to resquest correctly
   const [error, setError] = useState<string | undefined>("");
   const [loading, setLoading] = useState(initial || false);
-  const [value, setValue] = useState<GlobalRespnse>(undefined);
+  const [value, setValue] = useState<GlobalRespnse>([]);
 
   /**
    * a function that will be call in orderto make the resquest at needed time

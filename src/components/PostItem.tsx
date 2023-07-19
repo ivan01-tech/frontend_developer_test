@@ -32,7 +32,7 @@ function PostItem({}: Props) {
     executeFnComment(postId)
       .then((res) => res)
       .catch((err) => err);
-  }, [executeFnComment,postId]);
+  }, [executeFnComment, postId]);
 
   let contentPost;
 
@@ -41,16 +41,28 @@ function PostItem({}: Props) {
   } else if (errorPost) {
     contentPost = <p>{errorPost}</p>;
   } else {
-    contentPost = JSON.stringify(post);
+    const newPost = post as Post;
+    contentPost = (
+      <section>
+        <h1 className="text-6xl py-8 font-extralight text-center capitalize" >
+          {newPost.title}
+        </h1>
+        <p>{newPost.body}</p>
+      </section>
+    );
   }
 
   let contentComment;
   if (loadComments) {
-    contentComment = <p>Loading Post...</p>;
+    contentComment = <p>Loading Comments...</p>;
   } else if (errorComment) {
     contentComment = <p>{errorComment}</p>;
   } else {
-    contentComment = JSON.stringify(comments);
+    contentComment = (
+      <section>
+        <h2>Comments</h2>
+      </section>
+    );
   }
 
   return (

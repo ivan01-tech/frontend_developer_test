@@ -6,11 +6,15 @@ type Props = {};
 
 function Header({}: Props) {
   return (
-    <header className="header flex items-center justify-center flex-wrap">
+    <header className="header flex items-center justify-center flex-wrap shadow-lg mb-4 w-full ">
       <div className="flex items-center justify-between p-3 w-full max-w-4xl">
-        <h1>Blog</h1>
-        <nav>
-          <ul className="flex items-center justify-between gap-4 text-2xl">
+        <h1 className="text-3xl flex-1 font-extrabold ">
+          <Link to={"/"} className="text-gray-800">
+            Blog
+          </Link>
+        </h1>
+        <nav className=" flex items-end justify-center">
+          <ul className="flex items-center justify-between gap-4 text-3xl">
             <li>
               <Link to={"/"}>
                 <AiFillTwitterCircle />
