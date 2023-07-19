@@ -42,12 +42,19 @@ export function useAsyncInternal(
       setLoading(true);
       return func(...params)
         .then((res) => {
+
+          if (res.message) {
+            setError(res.message);
+            setValue(undefined);
+          }
+          
           setValue(res);
           setError(undefined);
-
+          console.log("res : ", res);
           return res;
         })
         .catch((err) => {
+          console.log("err : ", err);
           setError(true);
           setValue(undefined);
           return Promise.reject(err);

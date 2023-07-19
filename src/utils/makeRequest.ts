@@ -16,6 +16,7 @@ async function makeRequest(
 ) {
   return api(url, options)
     .then((res: AxiosResponse<ResponseTypeAxios>) => {
+      console.log("res1 : ", res);
       const d = res.data;
       // TODO delete it
       console.log("d : ", d, url);
