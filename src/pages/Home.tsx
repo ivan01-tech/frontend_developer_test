@@ -13,9 +13,11 @@ function Home({}: Props) {
   } else if (error) {
     content = <p>{error}</p>;
   } else {
-    content = PostsValue
-      ? PostsValue.map((post) => <Post post={post} />)
-      : "pos";
+    content = PostsValue ? (
+      PostsValue.map((post) => <Post post={post} />)
+    ) : (
+      <p>Not Found !</p>
+    );
   }
 
   return content;

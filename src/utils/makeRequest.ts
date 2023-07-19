@@ -8,7 +8,7 @@ import api from "../api/axios";
  * @returns
  */
 interface ResponseTypeAxios{
-  data:[]
+  data:[] 
 }
 async function makeRequest(
   url: string,

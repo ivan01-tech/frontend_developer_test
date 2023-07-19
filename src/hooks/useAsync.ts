@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 
-export const useAsync = function (func: () => Promise<any>) {
+export const useAsync = function (
+  func: () => Promise<{
+    error: boolean;
+    loading: boolean;
+    value: [] | undefined;
+  }>
+) {
   const { executeFn, ...state } = useAsyncInternal(func, [], true);
 
   useEffect(
@@ -16,7 +22,7 @@ export const useAsync = function (func: () => Promise<any>) {
 };
 
 export const useAsyncFn = function (
-  func: (agrs?: []) => Promise<any>,
+  func: (agrs: unknown[]) => Promise<any>,
   dependencies: unknown[]
 ) {
   return useAsyncInternal(func, dependencies, false);
@@ -30,25 +36,27 @@ export const useAsyncFn = function (
  * @returns An object that content error , loading , and the value of the resquesy
  */
 export function useAsyncInternal(
-  func: (args?: []) => Promise<any>,
+  func: (args: []) => Promise<GlobalRespnse>,
   dependencies: unknown[],
   initial: boolean
 ) {
   //state to handle to resquest correctly
-  const [error, setError] = useState(initial || false);
-  const [loading, setLoading] = useState(false);
-  const [value, setValue] = useState<[] | undefined>(undefined);
+  const [error, setError] = useState<string | undefined>("");
+  const [loading, setLoading] = useState(initial || false);
+  const [value, setValue] = useState<GlobalRespnse>(undefined);
 
   /**
    * a function that will be call in orderto make the resquest at needed time
    */
-  const executeFn = useCallback(
-    function (...params: []) {
+
+  const executeFn: (...args: unknown[]) => Promise<GlobalRespnse> = useCallback(
+    function (...dependencies: []) {
       setLoading(true);
-      return func(...dependencies)
+      return func(dependencies)
         .then((res) => {
-          if (res.message) {
-            setError(res.message);
+          console.log("res=== : ", res);
+          if (!(res.status != 200)) {
+            setError("res.message");
             setValue(undefined);
 
             return res;
@@ -56,12 +64,12 @@ export function useAsyncInternal(
 
           setValue(res);
           setError(undefined);
-          console.log("res : ", res);
+          setLoading(false);
           return res;
         })
         .catch((err) => {
           console.log("err : ", err);
-          setError(true);
+          setError(err?.message);
           setValue(undefined);
           return Promise.reject(err);
         })
@@ -69,7 +77,7 @@ export function useAsyncInternal(
           setLoading(false);
         });
     },
-    [func, dependencies]
+    [func]
   );
 
   return { error, loading, value, executeFn };
