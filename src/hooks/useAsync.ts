@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 
-export const useAsync = function (func: () => Promise) {
+export const useAsync = function (func: () => Promise<any>) {
   const { executeFn, ...state } = useAsyncInternal(func, [], true);
 
   useEffect(
     function () {
-      executeFn();
+      executeFn()
+        .then((res) => res)
+        .catch((err) => err);
     },
     [executeFn]
   );
@@ -13,7 +15,10 @@ export const useAsync = function (func: () => Promise) {
   return state;
 };
 
-export const useAsyncFn = function (func: () => Promise, dependencies = []) {
+export const useAsyncFn = function (
+  func: (agrs?: []) => Promise<any>,
+  dependencies: unknown[]
+) {
   return useAsyncInternal(func, dependencies, false);
 };
 
@@ -25,8 +30,8 @@ export const useAsyncFn = function (func: () => Promise, dependencies = []) {
  * @returns An object that content error , loading , and the value of the resquesy
  */
 export function useAsyncInternal(
-  func: () => void,
-  dependencies = [],
+  func: (args?: []) => Promise<any>,
+  dependencies: unknown[],
   initial: boolean
 ) {
   //state to handle to resquest correctly
@@ -40,14 +45,15 @@ export function useAsyncInternal(
   const executeFn = useCallback(
     function (...params: []) {
       setLoading(true);
-      return func(...params)
+      return func(...dependencies)
         .then((res) => {
-
           if (res.message) {
             setError(res.message);
             setValue(undefined);
+
+            return res;
           }
-          
+
           setValue(res);
           setError(undefined);
           console.log("res : ", res);
@@ -63,7 +69,7 @@ export function useAsyncInternal(
           setLoading(false);
         });
     },
-    [func]
+    [func, dependencies]
   );
 
   return { error, loading, value, executeFn };
