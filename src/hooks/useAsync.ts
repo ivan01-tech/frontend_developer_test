@@ -55,11 +55,11 @@ export function useAsyncInternal(
       return func(dependencies)
         .then((res) => {
           console.log("res=== : ", res);
-          if (!(res.status != 200)) {
-            setError("res.message");
+          if (!(res.status != 200)||res.name=="AxiosError") {
+            setError("Somethings went wrong !");
             setValue(undefined);
 
-            return res;
+            return res.message;
           }
 
           setValue(res);

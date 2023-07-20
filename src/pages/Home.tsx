@@ -11,8 +11,6 @@ function Home({}: Props) {
 
   const [search, setSearch] = useState("");
 
-  // const
-
   const { error, loading, value: PostsValue } = useAsync(getPost);
 
   // to display posts base on the current user input
@@ -32,9 +30,13 @@ function Home({}: Props) {
   } else if (!PostsValue) {
     content = <p>Not Found !</p>;
   } else {
-    content = filteredPosts
+    content = filteredPosts.length ? (
+      filteredPosts
       .map((post) => <Post key={post.id} post={post} />)
-      .slice(page, page + 10);
+      .slice(page, page + 10)
+    ) : (
+      <p>Not Found !</p>
+    );
   }
 
   return (
