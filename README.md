@@ -1,28 +1,36 @@
 # Frontend Developer Test
 
-This repo provide my solution for the frontend developer test provided by DIGIT-AD
+This repository provide my solution for the frontend developer test provided by DIGIT-AD
 
-## How to install the project
+## How to run the project
 
-The project was bootstrapped using ```Vite```.
+The project was bootstrapped using `Vite`.
 
-In a bash terminal run
+In a bash terminal run clone the project
 
 ```bash
 git clone https://github.com/ivan01-tech/frontend_developer_test.git
 ```
 
-then
+then install dependencies
 
 ```bash
 npm install
+```
+
+now start the developemnt sever
+
+```bash
+npm run  dev
 ```
 
 You can now view it on your localhost.
 
 ## Run All tests files
 
-Test was writing using ``vitest``
+Test was writing using `vitest`
+
+Run
 
 ```bash
 npm run test
@@ -33,10 +41,3 @@ or with coverage
 ```bash
 npm run  coverage
 ```
-
-<!-- To install this project first
-1. Project's Title
-2. Project Description
-3. How to Install and Run the Project
-4. How to Use the Project
-5. Include Tests -->
