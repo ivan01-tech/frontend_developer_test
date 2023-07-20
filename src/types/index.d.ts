@@ -8,7 +8,6 @@ interface Post {
 interface Res {
   status: number;
 }
-type GlobalRespnse = Post[] | undefined | Comment[] | Post;
 interface Comments {
   postId: number;
   id: number;
@@ -24,3 +23,5 @@ interface Comment {
   email: string;
   body: string;
 }
+
+type GlobalRespnse = Post[] | undefined | Comment[] | Post|Comment;

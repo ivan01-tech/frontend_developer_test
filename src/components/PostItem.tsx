@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useAsyncFn } from "../hooks/useAsync";
 import { getPostById, getPostComments } from "../services/PostsCrud";
 import { useEffect } from "react";
+import CommentItem from "./CommentItem";
 
 type Props = {};
 
@@ -44,9 +45,14 @@ function PostItem({}: Props) {
     const newPost = post as Post;
     contentPost = (
       <section>
-        <h1 className="text-6xl py-8 font-extralight text-center capitalize" >
-          {newPost.title}
-        </h1>
+        <div className="py-8 flex flex-col items-center gap-4">
+          <h1 className="text-slate-900 text-3xl sm:text-2xl md:text-6xl font-extralight text-center capitalize">
+            {newPost.title}
+          </h1>
+          <p className="text-center uppercase text-[12px] font-bold">
+            by Ivan Silatsa
+          </p>
+        </div>
         <p>{newPost.body}</p>
       </section>
     );
@@ -57,10 +63,17 @@ function PostItem({}: Props) {
     contentComment = <p>Loading Comments...</p>;
   } else if (errorComment) {
     contentComment = <p>{errorComment}</p>;
+  } else if (!comments) {
+    contentComment = <p>Not Found !</p>;
   } else {
     contentComment = (
-      <section>
-        <h2>Comments</h2>
+      <section className="m-4">
+        <h2 className="text-2xl font-bold py-4">Comments</h2>
+        <div className="flex flex-col gap-4 ">
+          {(comments as Comment[]).map((comment) => (
+            <CommentItem key={comment.id} comment={comment} />
+          ))}
+        </div>
       </section>
     );
   }

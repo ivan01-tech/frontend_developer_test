@@ -33,7 +33,7 @@ function Home({}: Props) {
     content = <p>Not Found !</p>;
   } else {
     content = filteredPosts
-      .map((post) => <Post post={post} />)
+      .map((post) => <Post key={post.id} post={post} />)
       .slice(page, page + 10);
   }
 
