@@ -23,9 +23,9 @@ npm install
 You can now view it on your lacalhost.
 
 
-To install this project first
+<!-- To install this project first
 1. Project's Title
 2. Project Description
 3. How to Install and Run the Project
 4. How to Use the Project
-5. Include Tests
+5. Include Tests -->
