@@ -4,7 +4,7 @@ This repo provide my solution for the frontend developer test provided by DIGIT-
 
 ## How to install the project
 
-The project was bootstrappep using Vite
+The project was bootstrapped using Vite
 
 <!--
 so just clone this repository -->
@@ -20,7 +20,7 @@ then
 ```bash
 npm install
 ```
-You can now view it on your lacalhost.
+You can now view it on your localhost.
 
 
 <!-- To install this project first
