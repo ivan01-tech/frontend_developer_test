@@ -6,7 +6,7 @@ This repository provide my solution for the frontend developer test provided by 
 
 The project was bootstrapped using `Vite`.
 
-In a bash terminal run clone the project
+In a bash terminal  clone the project
 
 ```bash
 git clone https://github.com/ivan01-tech/frontend_developer_test.git
@@ -18,7 +18,7 @@ then install dependencies
 npm install
 ```
 
-now start the developemnt sever
+now start the developement server
 
 ```bash
 npm run  dev
